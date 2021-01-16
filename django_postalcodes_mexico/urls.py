@@ -8,28 +8,8 @@ from . import views
 app_name = 'django_postalcodes_mexico'
 urlpatterns = [
     url(
-        regex="^PostalCode/~create/$",
-        view=views.PostalCodeCreateView.as_view(),
-        name='PostalCode_create',
-    ),
-    url(
-        regex="^PostalCode/(?P<pk>\d+)/~delete/$",
-        view=views.PostalCodeDeleteView.as_view(),
-        name='PostalCode_delete',
-    ),
-    url(
-        regex="^PostalCode/(?P<pk>\d+)/$",
-        view=views.PostalCodeDetailView.as_view(),
-        name='PostalCode_detail',
-    ),
-    url(
-        regex="^PostalCode/(?P<pk>\d+)/~update/$",
-        view=views.PostalCodeUpdateView.as_view(),
-        name='PostalCode_update',
-    ),
-    url(
-        regex="^PostalCode/$",
-        view=views.PostalCodeListView.as_view(),
-        name='PostalCode_list',
-    ),
+        regex="^codigo-postal/(?P<postal_code>\d+)/$",
+        view=views.getPostalCodeData,
+        name='get-postal-code-data',
+    )
 	]
