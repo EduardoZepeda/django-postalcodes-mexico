@@ -5,47 +5,39 @@ from django.core.management.base import BaseCommand, CommandError
 from ...models import PostalCode
 
 
+postal_code_node_tag = '{NewDataSet}table'
+prefix = '{NewDataSet}'
+databaseColumns = ['d_codigo', 'd_asenta', 'D_mnpio', 'd_ciudad', 'd_CP', 'c_estado', 'c_oficina', 'c_tipo_asenta', 'c_mnpio', 'id_asenta_cpcons', 'd_zona', 'c_cve_ciudad']
+
+def get_value_from_node(node, value):
+    try:
+        return node.find(value).text
+    except:
+        return ""
+
+def generate_list_of_postalcode_objects(root, node_tag):
+    PostalCodes = []
+    for node in root.findall(node_tag):
+        data = {column:get_value_from_node(node, prefix + column) for column in databaseColumns}
+        PostalCodes.append(data)
+    return PostalCodes
+
+
 class Command(BaseCommand):
     help = 'Creates the postal code database from the official correos de México xml file (CPdescarga.xml)'
 
     def handle(self, *args, **options):
         try:
-            root = ET.parse('CPdescarga.xxml').getroot()
+            root = ET.parse('CPdescarga.xml').getroot()
         except FileNotFoundError:
             self.stdout.write(self.style.ERROR(
-                 'A file called CPdescarga.xml must exist at the root of the project'))
+                 'A file called CPdescarga.xml must exist at the same level as your manage.py file'))
             exit(1)
-
-        def get_value_from_node(node, value):
-            try:
-                return node.find(value).text
-            except:
-                return ""
-
         PostalCodes = []
         self.stdout.write(self.style.WARNING(
              'This process can take a few minutes, please be patient'))
-        for data in root.findall('{NewDataSet}table'):
-            d_codigo = get_value_from_node(data, '{NewDataSet}d_codigo')
-            d_asenta = get_value_from_node(data, '{NewDataSet}d_asenta')
-            D_mnpio = get_value_from_node(data, '{NewDataSet}D_mnpio')
-            d_ciudad = get_value_from_node(data, '{NewDataSet}d_ciudad')
-            d_CP = get_value_from_node(data, '{NewDataSet}d_CP')
-            c_estado = get_value_from_node(data, '{NewDataSet}c_estado')
-            c_oficina = get_value_from_node(data, '{NewDataSet}c_oficina')
-            c_tipo_asenta = get_value_from_node(
-                data, '{NewDataSet}c_tipo_asenta')
-            c_mnpio = get_value_from_node(data, '{NewDataSet}c_mnpio')
-            id_asenta_cpcons = get_value_from_node(
-                data, '{NewDataSet}id_asenta_cpcons')
-            d_zona = get_value_from_node(data, '{NewDataSet}d_zona')
-            c_cve_ciudad = get_value_from_node(
-                data, '{NewDataSet}c_cve_ciudad')
-            PostalCodes.append(PostalCode(d_codigo=d_codigo, d_asenta=d_asenta, D_mnpio=D_mnpio, d_ciudad=d_ciudad, d_CP=d_CP, c_estado=c_estado,
-                                          c_oficina=c_oficina, c_tipo_asenta=c_tipo_asenta, c_mnpio=c_mnpio, id_asenta_cpcons=id_asenta_cpcons, d_zona=d_zona, c_cve_ciudad=c_cve_ciudad))
-        
+        postalCodes = generate_list_of_postalcode_objects(root, postal_code_node_tag)
         self.stdout.write('Creating database...')
-        PostalCode.objects.bulk_create(PostalCodes)
-
+        PostalCode.objects.bulk_create([PostalCode(**data) for data in postalCodes])
         self.stdout.write(self.style.SUCCESS(
             'The postal code database has been successfully populated'))
