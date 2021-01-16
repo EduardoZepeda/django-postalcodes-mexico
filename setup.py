@@ -53,6 +53,7 @@ setup(
     author='Eduardo Zepeda',
     author_email='eduardozepeda@coffeebytes.dev',
     url='https://github.com/EduardoZepeda/django-postalcodes-mexico',
+    download_url = 'https://github.com/EduardoZepeda/django-postalcodes-mexico/archive/0.1.0.tar.gz',
     packages=[
         'django_postalcodes_mexico',
     ],
