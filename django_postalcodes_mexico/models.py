@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from model_utils.models import TimeStampedModel
 
 
-D_ZONA_CHOICES = (('UR', 'Urbano'), ('RU', 'Rural'), ('SE', 'Semiurbano'))
+D_ZONA_CHOICES = (('Urbano', 'Urbano'), ('Rural', 'Rural'), ('Semiurbano', 'Semiurbano'))
 
 C_TIPO_ASENTA_CHOICES = (('32', 'Villa'), ('37', 'Zona industrial'), ('27', 'Poblado comunal'), ('20', 'Finca'), ('09', 'Colonia'), ('38', 'Ampliación'), ('10', 'Condominio'), ('34', 'Zona federal'), ('18', 'Exhacienda'), ('30', 'Residencial'), ('02', 'Barrio'), ('47', 'Zona militar'), ('12', 'Conjunto habitacional'), ('46', 'Zona naval'), ('23', 'Granja'), ('40', 'Puerto'), ('01', 'Aeropuerto'), ('15', 'Ejido'), ('04', 'Campamento'), ('45', 'Paraje'), ('29', 'Ranchería'), ('31', 'Unidad habitacional'), ('24', 'Hacienda'), ('28', 'Pueblo'), ('11', 'Congregación'), ('33', 'Zona comercial'), ('22', 'Gran usuario'), ('16', 'Estación'), ('26', 'Parque industrial'), ('48', 'Rancho'), ('21', 'Fraccionamiento'), ('17', 'Equipamiento'))
 
@@ -26,7 +26,7 @@ class PostalCode(TimeStampedModel):
     c_tipo_asenta = models.CharField(_('Código de tipo de asentamiento'), max_length=2, choices=C_TIPO_ASENTA_CHOICES)
     c_mnpio = models.CharField(_('Código de municipio'), max_length=3)
     id_asenta_cpcons = models.CharField(_('Id Asentamiento'), max_length=4)
-    d_zona = models.CharField(_('Tipo de Zona'), max_length=2, choices=D_ZONA_CHOICES)
+    d_zona = models.CharField(_('Tipo de Zona'), max_length=10, choices=D_ZONA_CHOICES)
     c_cve_ciudad = models.CharField(_('Asentamiento'), max_length=2, blank=True, null=True)
 
     @property
@@ -43,9 +43,6 @@ class PostalCode(TimeStampedModel):
 
 
     def __str__(self):
-        return '{} {} {}'.format(d_codigo, D_mnpio, d_estado)
-
-
-
+        return '{}, {}, {}'.format(self.d_codigo, self.D_mnpio, self.d_estado)
 
 
