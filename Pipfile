@@ -16,6 +16,7 @@ flake8 = ">=2.1.0"
 tox = ">=1.7.0"
 codecov = ">=2.0.0"
 bumpversion = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"
