@@ -8,7 +8,7 @@ from . import views
 app_name = 'django_postalcodes_mexico'
 urlpatterns = [
     url(
-        regex="^postal-code/(?P<postal_code>\d+)/$",
+        regex="^postal-code/(?P<postal_code>\w+)/$",
         view=views.getPostalCodeData,
         name='get-postal-code-data',
     )
