@@ -19,4 +19,4 @@ def getPostalCodeData(request, postal_code):
                     }
         return JsonResponse(postal_code_data)
     else:
-        return JsonResponse(postalCodeForm.errors, status=400)
+        return JsonResponse(postalCodeForm.errors, status=404)
