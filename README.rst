@@ -43,8 +43,8 @@ Don't forget to run migrate:
 
 If the installation was succesful a new command named `importpostalcodes` will be available.
 
-Automatically import postal codes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Basic Command usage 
+-------------------
 
 If you want to download all postal codes automatically run the following command::
 
@@ -52,8 +52,8 @@ If you want to download all postal codes automatically run the following command
 
 This command will attempt to connect to the `Mexican Postal Service website` (Correos de Mexico) and download the public zip file that contains all the postal codes available in xml format, extract them, process them and create the corresponding table in your database.
 
-Use a file in disk
-^^^^^^^^^^^^^^^^^^
+Local import usage
+------------------
 
 Alternatively, you can use the official xml file. Download it from the `Mexican Postal Service website`_. and unzip it
 
@@ -65,8 +65,8 @@ if you don't specify a file name the default file name from `Mexican Postal Serv
 
     CPdescarga.xml
 
-Add urls
-^^^^^^^^
+Add API urls
+------------
 
 Add django-postalcodes-mexico's URL patterns:
 
@@ -82,8 +82,8 @@ Add django-postalcodes-mexico's URL patterns:
     ]
 
 
-Usage
------
+API Usage
+---------
 
 Use the following url to retrieve a postal code
 
