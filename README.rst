@@ -11,7 +11,7 @@ django-postalcodes-mexico
 .. image:: https://codecov.io/gh/EduardoZepeda/django-postalcodes-mexico/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/EduardoZepeda/django-postalcodes-mexico
 
-A Django Package for handling Mexico postal codes. 
+A Django Package for getting and handling the Mexican Postal Service (Correos de Mexico) postal codes information.
 
 Documentation
 -------------
@@ -41,11 +41,32 @@ Don't forget to run migrate:
 
     python manage.py migrate
 
-If the installation was succesful a new command called `importpostalcodes` will be available.
+If the installation was succesful a new command named `importpostalcodes` will be available.
 
-This command connects to `correos de México` and downloads a zip file that contains all the postal codes available in xml format, extracts them, process them and creates the corresponding table in your database.::
+Automatically import postal codes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you want to download all postal codes automatically run the following command::
 
     python manage.py importpostalcodes
+
+This command will attempt to connect to the `Mexican Postal Service website` (Correos de Mexico) and download the public zip file that contains all the postal codes available in xml format, extract them, process them and create the corresponding table in your database.
+
+Use a file in disk
+^^^^^^^^^^^^^^^^^^
+
+Alternatively, you can use the official xml file. Download it from the `Mexican Postal Service website`_. and unzip it
+
+Place the xml file in the same level as your manage.py file and run the following command::
+
+    python manage.py importpostalcodes --file=your_file_name.xml
+
+if you don't specify a file name the default file name from `Mexican Postal Service website` (Correos de Mexico) will be used::
+
+    CPdescarga.xml
+
+Add urls
+^^^^^^^^
 
 Add django-postalcodes-mexico's URL patterns:
 
@@ -64,13 +85,16 @@ Add django-postalcodes-mexico's URL patterns:
 Usage
 -----
 
-You can access the following url to retrieve a postal code
+Use the following url to retrieve a postal code
 
 .. code-block:: python
 
-    ^postal-code/(?P<postal_code>\d+)/$
+    ^postal-code/(?P<postal_code>\w+)/$
+    # examples:
+    # postal-code/01000/
+    # postal-code/02000/
 
-And you will receive a response in JSON with the following format:
+If the request was successful you will receive a response in JSON formatted in this way:
 
 .. code-block:: json
 
@@ -92,7 +116,8 @@ Please note that a Postal Code is associated with only one state(estado) and sta
 Features
 --------
 
-* Automatically connects, downloads postal codes and creates a table 
+* Automatic postal codes table generation
+* Local file processing
 
 Running Tests
 -------------
@@ -125,3 +150,4 @@ Tools used in rendering this package:
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+.. _Mexican Postal Service website: https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/CodigoPostal_Exportar.aspx
