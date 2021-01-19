@@ -44,6 +44,8 @@ def fetch_zipped_xml_file(url=xml_postal_codes_url):
         'Pragma': 'no-cache',
         'Cache-Control': 'no-cache',
     }
+    # This data was obtained from the browser after a manual download.
+    # Please note that it can change in the future
     data = {
         '__EVENTTARGET': '',
         '__EVENTARGUMENT': '',
@@ -57,12 +59,12 @@ def fetch_zipped_xml_file(url=xml_postal_codes_url):
         'btnDescarga.y': '2'
     }
     try:
-        sys.stdout.write('Trying to connect to correos de Mexico\n')
+        sys.stdout.write('Trying to connect to Mexican Postal Service (Correos de Mexico)\n')
         response = requests.post(url, headers=headers, data=data)
-        sys.stdout.write('Response received from correos de Mexico\n')
+        sys.stdout.write('Response received\n')
     except Exception as e:
         sys.stderr.write(
-            'There was a problem trying to get a response from correos de Mexico: \n' + str(e))
+            'There was a problem trying to get a response from Mexican Postal Service (Correos de Mexico): \n' + str(e))
     return response.content
 
 
@@ -73,6 +75,15 @@ def get_xml_postal_codes_data():
                 root = ET.parse(buffered_xml_file).getroot()
             except Exception as e:
                 sys.stderr.write(
-                    'There was a problem when we were parsing the xml data: \n' + str(e))
+                    'There was a problem parsing the xml data: \n' + str(e))
                 exit(1)
     return root
+
+def parse_xml_postal_codes_file(xml_file_name):
+    try:
+        xml_tree = ET.parse(xml_file_name).getroot()
+    except Exception as e:
+        sys.stderr.write(
+            'There was a problem parsing the xml file, please make sure you downloaded it from Mexican Postal Service \'s official page.\n' + str(e))
+        exit(1)
+    return xml_tree
