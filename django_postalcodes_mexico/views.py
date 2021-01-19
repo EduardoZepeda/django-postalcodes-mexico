@@ -6,17 +6,13 @@ from .forms import PostalCodeForm
 from .models import (
 	PostalCode,
 )
-
+from .utils import generateCityAreasByPostalCode
 
 def getPostalCodeData(request, postal_code):
     postalCodeForm = PostalCodeForm({"postal_code": postal_code})
     if postalCodeForm.is_valid():
-        postal_codes = PostalCode.objects.filter(d_codigo=postal_code)
-        postal_code_data = {'codigoPostal': postal_code, 
-                    'municipio': postal_codes[0].D_mnpio,
-                    'estado': postal_codes[0].d_estado,
-                    'colonias': list(map(lambda x: x.d_asenta, postal_codes))
-                    }
-        return JsonResponse(postal_code_data)
+        postal_code_data = generateCityAreasByPostalCode(postal_code)
+        status=200 if postal_code_data else 404       
+        return JsonResponse(postal_code_data, status=status)
     else:
-        return JsonResponse(postalCodeForm.errors, status=404)
+        return JsonResponse(postalCodeForm.errors, status=400)
