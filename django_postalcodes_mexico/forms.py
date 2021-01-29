@@ -17,3 +17,13 @@ class PostalCodeForm(forms.Form):
             raise ValidationError(
                 _("A valid postal code must be 5 characters long"), code='invalid', params={'value': postal_code})
         return postal_code
+
+class PostalCodeSearchForm(forms.Form):
+    postal_code = forms.CharField(label=_('Postal Code'))
+
+    def clean_postal_code(self):
+        postal_code = self.cleaned_data['postal_code']
+        if not postal_code.isdigit():
+            raise ValidationError(
+                _("Please enter a valid postal code, only numbers are allowed"), code='invalid', params={'value': postal_code})
+        return postal_code
