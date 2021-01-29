@@ -11,5 +11,10 @@ urlpatterns = [
         regex="^postal-code/(?P<postal_code>\w+)/$",
         view=views.getPostalCodeData,
         name='get-postal-code-data',
-    )
+    ),
+    url(
+        regex="^postal-code-search/(?P<postal_code>\w+)/$",
+        view=views.searchSimilarPostalCode,
+        name='search-postal-code-data',
+        )
 	]
