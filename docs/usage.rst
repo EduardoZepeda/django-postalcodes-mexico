@@ -17,10 +17,10 @@ Add django-postalcodes-mexico's URL patterns:
 .. code-block:: python
 
     from django_postalcodes_mexico import urls as django_postalcodes_mexico_urls
-
+    from django.urls import path
 
     urlpatterns = [
         ...
-        url(r'^', include(django_postalcodes_mexico_urls)),
+        path('', include(django_postalcodes_mexico_urls)),
         ...
     ]

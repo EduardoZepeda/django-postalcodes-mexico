@@ -73,11 +73,11 @@ Add django-postalcodes-mexico's URL patterns:
 .. code-block:: python
 
     from django_postalcodes_mexico import urls as django_postalcodes_mexico_urls
-
+    from django.urls import path
 
     urlpatterns = [
         ...
-        url(r'^', include(django_postalcodes_mexico_urls)),
+        path('', include(django_postalcodes_mexico_urls)),
         ...
     ]
 
@@ -89,7 +89,7 @@ Use the following url to retrieve a postal code
 
 .. code-block:: python
 
-    ^postal-code/(?P<postal_code>\w+)/$
+    postal-code/<slug:postal_code>/
     # examples:
     # postal-code/01000/
     # postal-code/02000/
