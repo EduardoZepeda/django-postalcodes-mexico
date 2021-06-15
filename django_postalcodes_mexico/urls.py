@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from django.urls import path
 from django.views.generic import TemplateView
 
 from . import views
@@ -7,14 +7,7 @@ from . import views
 
 app_name = 'django_postalcodes_mexico'
 urlpatterns = [
-    url(
-        regex="^postal-code/(?P<postal_code>\w+)/$",
-        view=views.getPostalCodeData,
-        name='get-postal-code-data',
-    ),
-    url(
-        regex="^postal-code-search/(?P<postal_code>\w+)/$",
-        view=views.searchSimilarPostalCode,
-        name='search-postal-code-data',
-        )
-	]
+    # There are postal codes with leading zeros, hence slug is prefered over int
+    path('postal-code/<slug:postal_code>/', views.getPostalCodeData, name='get-postal-code-data'),
+    path('postal-code-search/<slug:postal_code>/', views.searchSimilarPostalCode, name='search-postal-code-data')
+]
