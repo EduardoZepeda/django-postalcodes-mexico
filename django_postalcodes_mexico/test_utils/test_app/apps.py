@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class TestAppConfig(AppConfig):
-    name = 'test_app'
+    name = 'django_postalcodes_mexico.test_utils.test_app'

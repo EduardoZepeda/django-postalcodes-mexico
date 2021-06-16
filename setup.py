@@ -63,7 +63,7 @@ setup(
     keywords='django-postalcodes-mexico',
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Framework :: Django :: 2.1',
+        'Framework :: Django :: 3.1',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
