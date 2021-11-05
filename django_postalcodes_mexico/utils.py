@@ -17,6 +17,7 @@ def generateCityAreasByPostalCode(postal_code):
         return postal_code_data
     return dict()
 
+
 def searchPostalCode(postal_code):
     postal_codes = PostalCode.objects.filter(d_codigo__contains=postal_code).distinct('d_codigo')
     if postal_codes:
