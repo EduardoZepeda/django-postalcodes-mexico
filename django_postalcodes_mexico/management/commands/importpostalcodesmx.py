@@ -17,7 +17,6 @@ from ._utils import (
 class Command(BaseCommand):
     help = 'Creates a postal code database using the xml data from the Mexican Postal Service (Correos de Mexico)'
 
-
     def add_arguments(self, parser):
 
         # Named (optional) arguments
