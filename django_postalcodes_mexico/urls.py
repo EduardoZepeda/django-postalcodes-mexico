@@ -15,6 +15,11 @@ urlpatterns = [
         name='get-postal-code-data'
         ),
     path(
+        'postal-code/<slug:postal_code>/',
+        views.getPostalCodeData,
+        name='get-postal-code-data-deprecated'
+        ),
+    path(
         'search/<slug:postal_code>/',
         views.searchSimilarPostalCode,
         name='search-postal-code-data')
