@@ -22,3 +22,13 @@ History
 ++++++++++++++++++
 
 * Fix an error in README.rst syntax
+
+0.4.0 (2021-06-15)
+++++++++++++++++++
+
+* Add an extra search function
+
+0.5.0 (2021-11-05)
+++++++++++++++++++
+
+* Deprecate postal-code/ url
