@@ -79,6 +79,7 @@ def get_xml_postal_codes_data():
                 exit(1)
     return root
 
+
 def parse_xml_postal_codes_file(xml_file_name):
     try:
         xml_tree = ET.parse(xml_file_name).getroot()

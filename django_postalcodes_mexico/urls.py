@@ -7,7 +7,15 @@ from . import views
 
 app_name = 'django_postalcodes_mexico'
 urlpatterns = [
-    # There are postal codes with leading zeros, hence slug is prefered over int
-    path('postal-code/<slug:postal_code>/', views.getPostalCodeData, name='get-postal-code-data'),
-    path('postal-code-search/<slug:postal_code>/', views.searchSimilarPostalCode, name='search-postal-code-data')
+    # There are postal codes with leading zeros,
+    # hence slug is prefered over int
+    path(
+        '<slug:postal_code>/',
+        views.getPostalCodeData,
+        name='get-postal-code-data'
+        ),
+    path(
+        'search/<slug:postal_code>/',
+        views.searchSimilarPostalCode,
+        name='search-postal-code-data')
 ]
