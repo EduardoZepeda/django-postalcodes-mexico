@@ -4,8 +4,6 @@ import zipfile
 from django.core.management.base import BaseCommand, CommandError
 import xml.etree.ElementTree as ET
 
-import requests
-
 from ...models import PostalCode
 from ._utils import (
     get_value_from_node,
