@@ -21,6 +21,8 @@ The full documentation is at https://django-postalcodes-mexico.readthedocs.io.
 Quickstart
 ----------
 
+If you want to use docker compose scroll down to `quickstart using docker compose`
+
 Install django-postalcodes-mexico::
 
     pip install django-postalcodes-mexico
@@ -81,6 +83,43 @@ Add django-postalcodes-mexico's URL patterns:
         ...
     ]
 
+Quickstart using docker compose
+-------------------------------
+
+To use docker compose to create an endpoint that returns the postal codes do the following: 
+
+
+First, clone the project and enter the project directory
+
+.. code-block:: bash
+
+    git clone https://github.com/EduardoZepeda/django-postalcodes-mexico.git
+    cd django-postalcodes-mexico/
+    
+Basic environmental variables need to be declared at the root of the project in a file named `db.env`
+
+.. code-block:: bash
+    # db.env
+    POSTGRES_PASSWORD=your-super-strong-password
+    POSTGRES_USER=yourUser
+    POSTGRES_DB=yourDatabaseName
+    SECRET_KEY=a-very-strong-django-secret-key
+
+Also a variable port, where the endpoint will be avaiable, in your system, inside a file named `.env`. I used 8009, but you can use any port you want.
+
+.. code-block:: bash
+    #.env
+    POSTAL_CODES_MX_PORT=8009
+
+Once the latest requirements are fulfilled you're ready to go.
+
+.. code-block:: bash
+    docker-compose up
+
+The script will fetch the most recent version of mexican postal codes directly to SEPOMEX (official correos de México website), create the required tables and get up a minimal django server, served using gunicorn.
+
+.. code-block:: bash
+    curl 0.0.0.0:8009/29240/
 
 API Usage
 ---------
