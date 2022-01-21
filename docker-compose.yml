@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  db:
+    image: postgres
+    restart: always
+    env_file:
+      - ./db.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - "5432"
+  app :
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    entrypoint: ./start.sh
+    ports:
+      - "${POSTAL_CODES_MX_PORT}:8000"
+    env_file:
+      - ./db.env
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
