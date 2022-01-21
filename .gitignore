@@ -154,3 +154,6 @@ dmypy.json
 
 # Vscode
 .vscode/
+
+# environmental
+*.env
