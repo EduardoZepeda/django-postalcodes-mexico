@@ -9,21 +9,22 @@ from ._utils import (
     get_value_from_node,
     generate_list_of_postalcode_objects,
     get_xml_postal_codes_data,
-    parse_xml_postal_codes_file)
+    parse_xml_postal_codes_file,
+)
 
 
 class Command(BaseCommand):
-    help = 'Creates a postal code database using the xml data from the Mexican Postal Service (Correos de Mexico)'
+    help = "Creates a postal code database using the xml data from the Mexican Postal Service (Correos de Mexico)"
 
     def add_arguments(self, parser):
 
         # Named (optional) arguments
         parser.add_argument(
-            '--file',
-            nargs='?',
-            const='CPdescarga.xml',
+            "--file",
+            nargs="?",
+            const="CPdescarga.xml",
             type=str,
-            help='Specify the xml file that contains the postal codes',
+            help="Specify the xml file that contains the postal codes",
         )
 
     def get_function_for_processing_xml_postal_codes(self, xml_file_name):
@@ -33,17 +34,26 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            xml_tree = self.get_function_for_processing_xml_postal_codes(options['file'])
+            xml_tree = self.get_function_for_processing_xml_postal_codes(
+                options["file"]
+            )
         except Exception as e:
-            self.stdout.write(self.style.ERROR(
-                'There was an error obtaining the xml zipped file from Correos de Mexico:' + str(e)))
+            self.stdout.write(
+                self.style.ERROR(
+                    "There was an error obtaining the xml zipped file from Correos de Mexico:"
+                    + str(e)
+                )
+            )
             exit(1)
         PostalCodes = []
-        self.stdout.write(self.style.WARNING(
-            'This process can take a few minutes, please be patient'))
+        self.stdout.write(
+            self.style.WARNING("This process can take a few minutes, please be patient")
+        )
         postalCodes = generate_list_of_postalcode_objects(xml_tree)
-        self.stdout.write('Creating database...')
-        PostalCode.objects.bulk_create(
-            [PostalCode(**data) for data in postalCodes])
-        self.stdout.write(self.style.SUCCESS(
-            'The postal code database has been successfully populated'))
+        self.stdout.write("Creating database...")
+        PostalCode.objects.bulk_create([PostalCode(**data) for data in postalCodes])
+        self.stdout.write(
+            self.style.SUCCESS(
+                "The postal code database has been successfully populated"
+            )
+        )

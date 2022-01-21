@@ -2,7 +2,11 @@
 from warnings import warn
 
 from django.http import JsonResponse
-from django.utils.translation import ugettext_lazy as _
+
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    from django.utils.translation import gettext_lazy as _
 
 from .forms import PostalCodeForm, PostalCodeSearchForm
 from .models import (
@@ -12,11 +16,12 @@ from .utils import generateCityAreasByPostalCode, searchPostalCode
 
 
 def getPostalCodeData(request, postal_code):
-    if request.path.startswith('/postal-code/'):
+    if request.path.startswith("/postal-code/"):
         warn(
             "The url postal-code/ is gonna be deprecated in favor of /",
             category=DeprecationWarning,
-            stacklevel=2)
+            stacklevel=2,
+        )
     postalCodeForm = PostalCodeForm({"postal_code": postal_code})
     if postalCodeForm.is_valid():
         postal_code_data = generateCityAreasByPostalCode(postal_code)
