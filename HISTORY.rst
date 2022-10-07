@@ -32,3 +32,8 @@ History
 ++++++++++++++++++
 
 * Deprecate postal-code/ url
+
+0.6.0 (2022-10-06)
+++++++++++++++++++
+
+* Deprecate Python 3.6, Python 3.7. Add support for Django 4.1
