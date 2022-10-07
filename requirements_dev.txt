@@ -1,3 +1,4 @@
+tox
 invoke
 twine
 wheel

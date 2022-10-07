@@ -48,7 +48,7 @@ requirements = open('requirements.txt').readlines()
 setup(
     name='django-postalcodes-mexico',
     version=version,
-    description="""A Django Package for handling Mexico postal codes""",
+    description="""A Django Package for handling Mexico's postal codes""",
     long_description=readme + '\n\n' + history,
     author='Eduardo Zepeda',
     author_email='eduardozepeda@coffeebytes.dev',
@@ -67,9 +67,8 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
 )
