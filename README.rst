@@ -2,6 +2,8 @@
 django-postalcodes-mexico
 =============================
 
+Leave a star if you find this package useful.
+
 .. image:: https://badge.fury.io/py/django-postalcodes-mexico.svg
     :target: https://badge.fury.io/py/django-postalcodes-mexico
 
@@ -12,6 +14,14 @@ django-postalcodes-mexico
     :target: https://codecov.io/gh/EduardoZepeda/django-postalcodes-mexico
 
 A Django Package for getting and handling the Mexican Postal Service (Correos de Mexico) postal codes information.
+
+Please leave a star if you find this package useful.
+
+Compatibility
+-------------
+
+* Python (3.8 - 3.10)
+* Django (2.2 - 4.1)
 
 Documentation
 -------------
