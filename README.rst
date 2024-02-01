@@ -20,8 +20,8 @@ Please leave a star if you find this package useful.
 Compatibility
 -------------
 
-* Python (3.8 - 3.10)
-* Django (2.2 - 4.1)
+* Python (3.10 - 3.12)
+* Django (3.1 - 5.0)
 
 Documentation
 -------------
