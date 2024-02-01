@@ -37,3 +37,8 @@ History
 ++++++++++++++++++
 
 * Deprecate Python 3.6, Python 3.7. Add support for Django 4.1
+
+0.6.1 (2024-31-11)
+++++++++++++++++++
+
+* Deprecate Python older than 3.10 and Django 3.0
