@@ -1,5 +1,5 @@
 django-model-utils>=2.0
 # Additional requirements go here
-requests==2.25.1
+requests>=2.25.1
 psycopg2==2.9.3
 gunicorn==20.1.0

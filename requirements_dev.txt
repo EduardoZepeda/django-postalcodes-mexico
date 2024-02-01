@@ -3,4 +3,4 @@ invoke
 twine
 wheel
 zest.releaser
-django-model-utils>=2.0
+django-model-utils>=4.3.1
