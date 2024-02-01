@@ -59,10 +59,10 @@ class Command(BaseCommand):
             self.style.WARNING("This process can take a few minutes, please be patient")
         )
         postalCodes = generate_list_of_postalcode_objects(xml_tree)
-        self.stdout.write("Creating database...")
+        self.stdout.write("Creating table...")
         PostalCode.objects.bulk_create([PostalCode(**data) for data in postalCodes])
         self.stdout.write(
             self.style.SUCCESS(
-                "The postal code database has been successfully populated"
+                "The postal code table has been successfully populated"
             )
         )
