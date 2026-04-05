@@ -49,7 +49,7 @@ History
 * Run tests for Django 6.0 and Python 3.12
 
 
-0.7.1 (2024-04-04)
+0.7.2 (2024-04-04)
 ++++++++++++++++++
 
 * Update README.md
