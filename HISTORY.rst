@@ -43,7 +43,13 @@ History
 
 * Deprecate Python older than 3.10 and Django 3.0
 
-0.7.0 (2024-31-11)
+0.7.0 (2026-04-04)
 ++++++++++++++++++
 
 * Run tests for Django 6.0 and Python 3.12
+
+
+0.7.1 (2024-04-04)
+++++++++++++++++++
+
+* Update README.md
