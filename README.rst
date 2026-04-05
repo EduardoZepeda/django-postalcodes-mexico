@@ -21,7 +21,7 @@ Compatibility
 -------------
 
 * Python (3.10 - 3.12)
-* Django (3.1 - 5.0)
+* Django (4.0 - 6.0)
 
 Documentation
 -------------
