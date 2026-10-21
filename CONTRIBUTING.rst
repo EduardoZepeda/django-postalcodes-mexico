@@ -62,11 +62,20 @@ Ready to contribute? Here's how to set up `django-postalcodes-mexico` for local 
 
     $ git clone git@github.com:your_name_here/django-postalcodes-mexico.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+3. Create a virtual environment and install your local copy and test dependencies::
 
-    $ mkvirtualenv django-postalcodes-mexico
     $ cd django-postalcodes-mexico/
-    $ python setup.py develop
+    $ python -m venv .venv
+    $ source .venv/bin/activate
+    $ python -m pip install -r requirements_test.txt
+    $ python -m pip install -e .
+
+   On Windows, activate the environment with ``.venv\Scripts\activate.bat``
+   in Command Prompt or ``.venv\Scripts\Activate.ps1`` in PowerShell.
+   Choose a Python version compatible with the dependencies pinned in
+   ``requirements_test.txt``. The package classifiers in ``setup.py`` and
+   the environments in ``tox.ini`` currently list different Python versions;
+   check both when choosing an environment or reporting compatibility issues.
 
 4. Create a branch for local development::
 
@@ -78,10 +87,12 @@ Ready to contribute? Here's how to set up `django-postalcodes-mexico` for local 
    tests, including testing other Python versions with tox::
 
         $ flake8 django_postalcodes_mexico tests
-        $ python setup.py test
+        $ python runtests.py
         $ tox
 
-   To get flake8 and tox, just pip install them into your virtualenv. 
+   ``requirements_test.txt`` includes flake8, coverage and tox. The tox matrix
+   requires the corresponding Python interpreters to be installed. Report any
+   dependency-resolution failures separately from application test failures.
 
 6. Commit your changes and push your branch to GitHub::
 
@@ -100,13 +111,15 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 2.6, 2.7, and 3.3, and for PyPy. Check 
-   https://travis-ci.org/EduardoZepeda/django-postalcodes-mexico/pull_requests
-   and make sure that the tests pass for all supported Python versions.
+3. Check the Python and Django versions declared in ``setup.py`` and the
+   test environments in ``tox.ini``. State the interpreter, Django version
+   and test commands you actually ran in your pull request, including any
+   environments you could not test. The legacy Python 2.x and 3.3 instructions
+   no longer describe the current project configuration.
 
 Tips
 ----
 
 To run a subset of tests::
 
-    $ python -m unittest tests.test_django_postalcodes_mexico
+    $ python runtests.py tests.test_models
